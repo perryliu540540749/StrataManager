@@ -14,5 +14,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing issue or unit" }, { status: 400 });
   }
   console.log(`Issue reported for ${unit}: ${issue}`);
-  return NextResponse.redirect(new URL("/report", request.url), 301);
+  return NextResponse.json({ message: "Issue reported successfully!", issue, unit });
 }
