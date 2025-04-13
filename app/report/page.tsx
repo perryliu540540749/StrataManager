@@ -24,9 +24,10 @@ export default function Report() {
       }
       const data = await response.json();
       setMessage(data.message);
-    } catch (error: Error) { // 明確指定 error 為 Error 類型
+    } catch (error) {
       console.error("Error submitting issue:", error);
-      setMessage("Failed to submit issue: " + error.message);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      setMessage("Failed to submit issue: " + errorMessage);
     }
   };
 
@@ -38,9 +39,10 @@ export default function Report() {
       }
       const data = await response.json();
       setMessage(data.message);
-    } catch (error: Error) { // 明確指定 error 為 Error 類型
+    } catch (error) {
       console.error("Error checking status:", error);
-      setMessage("Failed to check status: " + error.message);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      setMessage("Failed to check status: " + errorMessage);
     }
   };
 
