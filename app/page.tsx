@@ -7,7 +7,7 @@ export default function Home() {
       <p>Contact us at {process.env.MANAGER_EMAIL}</p>
       <img src="/condo.jpg" alt="Condo" width="300" />
       <br />
-      <a href="/rules.pdf" target="_blank">Download Rules</a>
+      <a href="/rules1.png" target="_blank">Download Rules</a>
     </div>
   );
 }
