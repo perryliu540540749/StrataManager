@@ -9,19 +9,35 @@ export default function Report() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/report-issue", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ unit, issue }),
-    });
-    const data = await response.json();
-    setMessage(data.message);
+    try {
+      const response = await fetch("/api/report-issue", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ unit, issue }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error submitting issue:", error);
+      setMessage("Failed to submit issue: " + error.message);
+    }
   };
 
   const handleGet = async () => {
-    const response = await fetch(`/api/report-issue?unit=${unit}`);
-    const data = await response.json();
-    setMessage(data.message);
+    try {
+      const response = await fetch(`/api/report-issue?unit=${unit}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error checking status:", error);
+      setMessage("Failed to check status: " + error.message);
+    }
   };
 
   return (
