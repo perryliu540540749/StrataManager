@@ -15,12 +15,16 @@ export default function Report() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ unit, issue }),
       });
+      if (response.redirected) {
+        setMessage("Issue reported successfully! Redirected to /report");
+        return;
+      }
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       setMessage(data.message);
-    } catch (error) {
+    } catch (error: Error) { // 明確指定 error 為 Error 類型
       console.error("Error submitting issue:", error);
       setMessage("Failed to submit issue: " + error.message);
     }
@@ -34,7 +38,7 @@ export default function Report() {
       }
       const data = await response.json();
       setMessage(data.message);
-    } catch (error) {
+    } catch (error: Error) { // 明確指定 error 為 Error 類型
       console.error("Error checking status:", error);
       setMessage("Failed to check status: " + error.message);
     }
