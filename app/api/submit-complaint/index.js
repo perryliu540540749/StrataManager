@@ -24,7 +24,8 @@ export default async function handler(request) {
       }
     );
   } else if (request.method === "GET") {
-    const { name } = request.query;
+    const url = new URL(request.url);
+    const name = url.searchParams.get("name");
     if (!name) {
       return new Response(
         JSON.stringify({ message: "Name is required for GET request" }),
