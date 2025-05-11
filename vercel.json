@@ -5,7 +5,7 @@
       "use": "@vercel/next"
     }
   ],
-  "regions": ["hnd1", "sin1"],
+  "regions": ["hnd1"],
   "crons": [
     {
       "path": "/api/send-reminder",
