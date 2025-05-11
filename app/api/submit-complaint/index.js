@@ -13,7 +13,6 @@ export default async function handler(request) {
       );
     }
 
-    // 模擬儲存投訴並重定向
     return new Response(
       JSON.stringify({ message: "Complaint submitted successfully" }),
       {
