@@ -6,10 +6,7 @@ export default async function handler(request) {
     if (!name || !message) {
       return new Response(
         JSON.stringify({ message: "Name and message are required" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" }
-        }
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
@@ -29,28 +26,19 @@ export default async function handler(request) {
     if (!name) {
       return new Response(
         JSON.stringify({ message: "Name is required for GET request" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" }
-        }
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
     return new Response(
       JSON.stringify({ message: `Complaint status for ${name}: Pending` }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-      }
+      { status: 200, headers: { "Content-Type": "application/json" } }
     );
   }
 
   return new Response(
     JSON.stringify({ message: "Method not allowed" }),
-    {
-      status: 405,
-      headers: { "Content-Type": "application/json" }
-    }
+    { status: 405, headers: { "Content-Type": "application/json" } }
   );
 }
 
